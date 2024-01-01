@@ -13,13 +13,12 @@ import { Billboard } from "@prisma/client";
 import { Trash } from "lucide-react";
 
 import { Heading } from "@/components/heading";
+import ImageUpload from "@/components/image-upload";
 import AlertModal from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import UseOrigin from "@/hooks/use-origin";
-import ImageUpload from "@/components/image-upload";
 
 interface BillboardFormProps {
     initialData: Billboard | null
@@ -76,7 +75,7 @@ export const BillboardForm = ({ initialData }: BillboardFormProps) => {
             setLoading(true)
             await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`)
             router.refresh()
-            router.push('/')
+            router.push(`/${params.storeId}/billboards`)
             toast.success("Billboard deleted")
         } catch (error: any) {
             toast.error("Make sure you remove all store categories using this billboard.")
@@ -156,7 +155,6 @@ export const BillboardForm = ({ initialData }: BillboardFormProps) => {
                     </Button>
                 </form>
             </Form>
-            <Separator />
         </>
     );
 }

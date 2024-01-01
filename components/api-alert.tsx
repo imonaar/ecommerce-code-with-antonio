@@ -24,10 +24,12 @@ const variantMap: Record<ApiAlertProps["variant"], BadgeProps["variant"]> = {
 
 
 export default function ApiAlert({ title, description, variant = "public" }: ApiAlertProps) {
+
   const onCopy = () => {
     navigator.clipboard.writeText(description);
-    toast.success("API route copied to the clipboard.")
+    toast.success("Billboard ID copied to the clipboard.")
   }
+
   return (
     <Alert>
       <Server className="h-4 w-4 " />
